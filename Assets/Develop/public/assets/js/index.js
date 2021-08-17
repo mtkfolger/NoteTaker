@@ -181,6 +181,3 @@ if (window.location.pathname === '/notes') {
 }
 
 getAndRenderNotes();
-
-
-if ( blur === true)
