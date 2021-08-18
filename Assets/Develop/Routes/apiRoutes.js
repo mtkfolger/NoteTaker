@@ -5,6 +5,8 @@
 
 const app = require('express').Router();
 
+const path = require('path');
+
 const fs = require('fs');
 
 let db = require ('../db/db.json');
@@ -32,12 +34,12 @@ res.json(db);
 })
 
 app.delete('/notes/:id', (req,res) => {
-    let notesToKeep = []
-
-    //if/ ifNot condition then push to notesToKeep, loop over db 
-    //db.push(notesToKeep)
-    //writeFileSync once array is correct.
-})
+        let chosen = req.params.id
+        let oldNote =JSON.parse(fs.readFileSync(path.join(__dirname,"../db/db.json"),"utf-8"))
+        const newNote =oldNote.filter(oldNote=>oldNote.id != chosen)
+        fs.writeFileSync("./db/db.json",JSON.stringify(newNote))
+        res.send(newNote)
+    })
 
 
 module.exports = app;
