@@ -36,7 +36,7 @@ res.json(db);
 app.delete('/notes/:id', (req,res) => {
         let chosen = req.params.id
         let oldNote =JSON.parse(fs.readFileSync(path.join(__dirname,"../db/db.json"),"utf-8"))
-        const newNote =oldNote.filter(oldNote=>oldNote.id != chosen)
+        const newNote =oldNote.filter(oldNote => oldNote.id != chosen)
         fs.writeFileSync("./db/db.json",JSON.stringify(newNote))
         res.send(newNote)
     })
